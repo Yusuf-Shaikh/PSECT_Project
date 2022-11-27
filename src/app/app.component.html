@@ -1,0 +1,72 @@
+<video preload="true"  loop = "true" autoplay="true"
+muted="muted" id="myVideo">
+  <source src="./assets/PSECT_BG.mp4" type="video/mp4">
+</video>
+
+<div class="body" id="mainBody">
+  <div class="card" [ngStyle]="{ display: displayIntro }">
+    <div class="Intro">
+      <h1>PSECT Project</h1>
+      <p class="madeby">Made By</p>
+      <p>Anand Kumar - 107119017</p>
+      <p>Shaikh Mohammed Yusuf - 107119113</p>
+      <p>Visweswaran - 107119135</p>
+    </div>
+    <button class="temp" (click)="EnterManually()">
+      Enter Values Manually
+    </button>
+    <label for="files" class="btn">Upload values from file</label>
+    <input
+      id="files"
+      class="choose-file"
+      type="file"
+      (change)="UploadInputs($any($event.target).files)"
+      style="visibility: hidden;"
+    />
+  </div>
+
+  <div class="card" [ngStyle]="{ display: displayInitialInput }">
+    <form>
+      <input
+        name="no_of_gen"
+        placeholder="Enter number of generators"
+        type="number"
+        min="0"
+        [(ngModel)]="no_of_gen"
+        required
+      />
+      <input
+        name="total_time"
+        placeholder="Enter total time in hrs"
+        type="number"
+        min="0"
+        [(ngModel)]="total_time"
+        required
+      />
+      <h5 class="Alert" [ngStyle]="{ display: displayAlert }">All feilds required!!</h5>
+      <button class="temp" (click)="InitializeValues()">Confirm Values</button>
+    </form>
+  </div>
+
+  <div [ngStyle]="{ display: displayGens }">
+    <app-generator-input
+      *ngFor="let gen of generatorCount; let i = index"
+      [id]="i"
+    ></app-generator-input>
+    <button (click)="CalculateValues()">Confirm values</button>
+  </div>
+
+  <div class="card" [ngStyle]="{ display: displayLoads }">
+    <h5 class="generator-input-title">Enter load values</h5>
+    <div *ngFor="let load of loads; let i = index">
+      <app-load-input [id]="i"></app-load-input>
+    </div>
+    <button (click)="ShowOutput()" routerLink="/output">Show Output</button>
+  </div>
+
+  <router-outlet ></router-outlet>
+
+  <button (click)="openPDF()">
+    Print
+  </button>
+</div>

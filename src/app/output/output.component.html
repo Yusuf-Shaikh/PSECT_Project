@@ -1,0 +1,57 @@
+
+
+<div class="body">
+
+  <div class="card">
+    <h5 class="title">Commitment Scheme</h5>
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Generator</th>
+        <th>Flapc (Rs./MWh)</th>
+      </tr>
+        <tr *ngFor="let out of flapc let i=index">
+          <td>{{i+1}}.</td>
+          <td>G<sub>{{out.index+1}}</sub></td>
+          <td>{{out.value}}</td>
+        </tr>
+    </table>
+  </div>
+
+  <div class="card">
+
+    <h5 class="title">Priority List </h5>
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Generators</th>
+        <th>Max Power Output (MW)</th>
+        <th>Min Power Output (MW)</th>
+      </tr>
+        <tr *ngFor="let out of Output_list; let i=index">
+          <td>{{i+1}}.</td>
+          <td>{{out.generators}}</td>
+          <td>{{out.Total_Pmax}}</td>
+          <td>{{out.Total_Pmin}}</td>
+        </tr>
+    </table>
+  </div>
+
+  <div class="card2 garph">
+    <h5 class="title">Load Curve with Unit Commitment </h5>
+    <canvasjs-chart [options]="chartOptions" ></canvasjs-chart>
+    <div class="legend">
+      <div *ngFor="let color of colors; let i=index">
+        <div class="box" [ngStyle]="{background: color}"></div>
+        <p>{{LegendText[i]}}</p>
+      </div>
+    </div>
+</div>
+
+  <div>
+    <div *ngFor="let gen of generators; let i = index">
+      <app-generator-graph [id]="i"></app-generator-graph>
+    </div>
+  </div>
+
+</div>

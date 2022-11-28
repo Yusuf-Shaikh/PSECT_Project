@@ -94,9 +94,9 @@ export class GeneratorsService {
     let temp: { x: number; y: number }[] = [];
     for (let i = generator.Pmin; i <= generator.Pmax; i++) {
       let y =
-        generator.A_parameter +
+        (generator.A_parameter +
         generator.B_parameter * i +
-        generator.C_parameter * i * i;
+        generator.C_parameter * i * i) * generator.F;
       temp.push({ x: i, y: y });
     }
     this.dps.push(temp);

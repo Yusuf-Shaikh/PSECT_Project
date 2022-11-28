@@ -15,6 +15,10 @@ text-align: center;
   min-height: 103%;
 }
 
+.print{
+  margin-bottom: 40px;
+}
+
 .generator-input-title {
   font-size: 14pt;
   line-height: 28pt;

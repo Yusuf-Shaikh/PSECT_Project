@@ -9,10 +9,10 @@ export class GeneratorsService {
   }[] = [];
   flapc: { value: number; index: number }[] = [];
   priority_list: { value: number; index: number }[][] = [];
-  loads:number[] = [];
+  loads: number[] = [];
   fromfile = false;
-
   dps: { x: number; y: number }[][] = [];
+
   addGenerator() {
     this.generators.push({
       A_parameter: 0,
@@ -25,12 +25,12 @@ export class GeneratorsService {
     this.flapc.push({ value: 0, index: 0 });
   }
 
-  updateIndLoad(id:number, Load:number){
-this.loads[id] = Load;
+  updateIndLoad(id: number, Load: number) {
+    this.loads[id] = Load;
   }
 
-  updateLoad(loads:number[]){
-    if(!this.fromfile){
+  updateLoad(loads: number[]) {
+    if (!this.fromfile) {
       this.loads = loads;
     }
   }
@@ -64,23 +64,24 @@ this.loads[id] = Load;
     this.flapc[id].index = id;
   }
 
+  //to create priority list
   calculate() {
     this.flapc.sort(function (a, b) {
       return a.value - b.value;
     });
     for (let i = 0; i < this.generators.length; i++) {
-      this.generateRandomData(this.generators[i]);
-      let llist: { value: number; index: number }[] = [];
+      this.createDSP(this.generators[i]);
+      let tempList: { value: number; index: number }[] = [];
       let j = this.generators.length - i;
       while (j) {
-        llist.push(this.flapc[j - 1]);
+        tempList.push(this.flapc[j - 1]);
         j--;
       }
-      this.priority_list.push(llist);
+      this.priority_list.push(tempList);
     }
   }
 
-  generateRandomData(generator: {
+  createDSP(generator: {
     A_parameter: number;
     B_parameter: number;
     C_parameter: number;
@@ -107,23 +108,23 @@ this.loads[id] = Load;
     return this.generators;
   }
 
-  get_list(){
+  get_list() {
     return this.priority_list;
   }
 
-  get_load(){
+  get_load() {
     return this.loads;
   }
 
-  get_flapc(){
+  get_flapc() {
     return this.flapc;
   }
 
-  getInitialvalue(fileInput:string){
+  getInitialvalue(fileInput: string) {
     let Input_param = fileInput.split(/\r?\n/);
-    let Initial_value = Input_param[0].split(',');
-    let Load_string = (Input_param[1].split(','));
-    for(let i=0;i<Load_string.length;i++){
+    let Initial_value = Input_param[0].split(",");
+    let Load_string = Input_param[1].split(",");
+    for (let i = 0; i < Load_string.length; i++) {
       this.loads.push(Number(Load_string[i]));
     }
     this.fromfile = true;
@@ -131,14 +132,22 @@ this.loads[id] = Load;
     return Number(Initial_value[0]);
   }
 
-  readInputfile(fileInput:string){
+  readInputfile(fileInput: string) {
     let gen_param = fileInput.split(/\r?\n/);
     console.log(fileInput);
     console.log(this.generators);
     console.log(this.loads);
-    for(let i=2;i<gen_param.length;i++){
-      let values = gen_param[i].split(',');
-      this.updateGenerator(i-2,Number(values[0]),Number(values[1]),Number(values[2]),Number(values[4]),Number(values[5]),Number(values[3]));
+    for (let i = 2; i < gen_param.length; i++) {
+      let values = gen_param[i].split(",");
+      this.updateGenerator(
+        i - 2,
+        Number(values[0]),
+        Number(values[1]),
+        Number(values[2]),
+        Number(values[4]),
+        Number(values[5]),
+        Number(values[3])
+      );
     }
     console.log(this.generators);
   }

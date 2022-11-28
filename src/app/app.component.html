@@ -1,6 +1,12 @@
-<video preload="true"  loop = "true" autoplay="true"
-muted="muted" id="myVideo">
-  <source src="./assets/PSECT_BG.mp4" type="video/mp4">
+<video
+  preload="true"
+  loop="true"
+  autoplay="true"
+  muted="muted"
+  id="myVideo"
+  [ngStyle]="{ display: displayVideo }"
+>
+  <source src="./assets/PSECT_BG.mp4" type="video/mp4" />
 </video>
 
 <div class="body" id="mainBody">
@@ -43,7 +49,9 @@ muted="muted" id="myVideo">
         [(ngModel)]="total_time"
         required
       />
-      <h5 class="Alert" [ngStyle]="{ display: displayAlert }">All feilds required!!</h5>
+      <h5 class="Alert" [ngStyle]="{ display: displayAlert }">
+        All feilds required!!
+      </h5>
       <button class="temp" (click)="InitializeValues()">Confirm Values</button>
     </form>
   </div>
@@ -53,7 +61,7 @@ muted="muted" id="myVideo">
       *ngFor="let gen of generatorCount; let i = index"
       [id]="i"
     ></app-generator-input>
-    <button (click)="CalculateValues()">Confirm values</button>
+    <button class="print" (click)="CalculateValues()">Confirm values</button>
   </div>
 
   <div class="card" [ngStyle]="{ display: displayLoads }">
@@ -64,9 +72,8 @@ muted="muted" id="myVideo">
     <button (click)="ShowOutput()" routerLink="/output">Show Output</button>
   </div>
 
-  <router-outlet ></router-outlet>
-
-  <button (click)="openPDF()">
-    Print
-  </button>
+  <router-outlet></router-outlet>
 </div>
+<button class="print" (click)="openPDF()" [ngStyle]="{ display: displayPDF }">
+  Print
+</button>

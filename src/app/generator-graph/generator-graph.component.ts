@@ -21,24 +21,6 @@ export class GeneratorGraphComponent implements OnInit {
     axisX:{title:string};
     axisY:{title:string};
   };
-  // generateRandomData() {
-  //   let A=1;
-  //   let B=1;
-  //   let C=1;
-  //   let Pmin=1;
-  //   let Pmax=10;
-
-  //   let temp:{ x: number; y: number }[] = []
-  //   for (let i = Pmin; i <= Pmax; i++) {
-  //     let y =
-  //       A +
-  //       B* i +
-  //       C * i * i;
-  //     this.dps.push({ x: i, y: y});
-  //   }
-  //   console.log(this.dps);
-  //   return this.dps;
-  // }
 
   ngOnInit(): void {
     this.chartOptions = {

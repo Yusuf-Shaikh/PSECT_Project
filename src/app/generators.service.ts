@@ -1,4 +1,5 @@
 export class GeneratorsService {
+
   generators: {
     A_parameter: number;
     B_parameter: number;
@@ -7,11 +8,12 @@ export class GeneratorsService {
     Pmax: number;
     F: number;
   }[] = [];
+
+  loads: number[] = [];
   flapc: { value: number; index: number }[] = [];
   priority_list: { value: number; index: number }[][] = [];
-  loads: number[] = [];
-  fromfile = false;
   dps: { x: number; y: number }[][] = [];
+  fromfile = false;
 
   addGenerator() {
     this.generators.push({

@@ -103,12 +103,6 @@ export class AppComponent implements OnInit {
     this.displayPDF = 'block';
   }
 
-  printPDF() {
-    this.displayVideo = "none";
-    window.print();
-    this.displayVideo = "block";
-  }
-
   openPDF(){
     let DATA: any = document.getElementById("mainBody");
     html2canvas(DATA).then((canvas) => {

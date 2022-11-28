@@ -10,6 +10,7 @@
 </video>
 
 <div class="body" id="mainBody">
+  <!--Welcome Screen-->
   <div class="card" [ngStyle]="{ display: displayIntro }">
     <div class="Intro">
       <h1>PSECT Project</h1>
@@ -31,6 +32,7 @@
     />
   </div>
 
+  <!--Getting number of gen & total time-->
   <div class="card" [ngStyle]="{ display: displayInitialInput }">
     <form>
       <input
@@ -56,6 +58,7 @@
     </form>
   </div>
 
+  <!--Getting generator values dynamically-->
   <div [ngStyle]="{ display: displayGens }">
     <app-generator-input
       *ngFor="let gen of generatorCount; let i = index"
@@ -64,6 +67,7 @@
     <button class="print" (click)="CalculateValues()">Confirm values</button>
   </div>
 
+  <!--Getting load for each hour dynamically-->
   <div class="card" [ngStyle]="{ display: displayLoads }">
     <h5 class="generator-input-title">Enter load values</h5>
     <div *ngFor="let load of loads; let i = index">
@@ -72,6 +76,7 @@
     <button (click)="ShowOutput()" routerLink="/output">Show Output</button>
   </div>
 
+  <!--Routing to output page-->
   <router-outlet></router-outlet>
 </div>
 <button class="print" (click)="openPDF()" [ngStyle]="{ display: displayPDF }">
